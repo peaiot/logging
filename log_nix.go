@@ -1,4 +1,4 @@
-// +build !windows
+//go:build !windows
 
 // Copyright 2013, Örjan Persson. All rights reserved.
 // Use of this source code is governed by a BSD-style

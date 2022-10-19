@@ -1,0 +1,6 @@
+.idea
+__pycache__
+.vscode
+__debug_bin
+dist/
+.DS_Store

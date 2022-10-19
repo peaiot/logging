@@ -1,8 +1,8 @@
+//go:build !windows
+
 // Copyright 2013, Örjan Persson. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
-
-//+build !windows,!plan9
 
 package logging
 
@@ -20,6 +20,17 @@ type SyslogBackend struct {
 func NewSyslogBackend(prefix string) (b *SyslogBackend, err error) {
 	var w *syslog.Writer
 	w, err = syslog.New(syslog.LOG_CRIT, prefix)
+	return &SyslogBackend{w}, err
+}
+
+// NewSyslogBackendRemote connects to the remote server
+func NewSyslogBackendRemote(prefix string, syslogaddr string, priority syslog.Priority) (b *SyslogBackend, err error) {
+	var w *syslog.Writer
+	if syslogaddr != "" {
+		w, err = syslog.Dial("udp", syslogaddr, priority, prefix)
+	} else {
+		w, err = syslog.Dial("", "", priority, prefix)
+	}
 	return &SyslogBackend{w}, err
 }
 

@@ -33,8 +33,11 @@ func Example() {
 	log.Debugf("debug %s", "arg")
 	log.Error("error")
 
+	log.Write([]byte("Write log"))
+
 	// Output:
 	// debug arg
 	// error
 	// 00:00:00.000 Example E error
+	// Write log
 }

@@ -234,6 +234,12 @@ func (l *Logger) Noticef(format string, args ...interface{}) {
 	l.log(NOTICE, &format, args...)
 }
 
+// Write logs a message using INFO as log level.
+func (l *Logger) Write(p []byte) (n int, err error) {
+	l.log(INFO, nil, string(p))
+	return len(p), nil
+}
+
 // Info logs a message using INFO as log level.
 func (l *Logger) Info(args ...interface{}) {
 	l.log(INFO, nil, args...)
